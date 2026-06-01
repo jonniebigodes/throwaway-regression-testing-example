@@ -49,6 +49,7 @@ jobs:
           echo "Vitest Test Results CLI:"
           ls -la
           ls -la .vitest*
+          echo "Contents of .vitest/ directory:"
           cd .vitest
           tree
       - name: Run Chromatic
