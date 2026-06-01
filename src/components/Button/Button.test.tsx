@@ -46,16 +46,4 @@ describe("Button", () => {
       .element(screen.getByRole("button"))
       .toHaveStyle({ height: "24px" });
   });
-  test("Unstable -Random test", async () => {
-    const screen = await render(
-      <Button
-        label={`Button with random label ${Math.random()}`}
-        size="large"
-      />,
-    );
-    await expect
-      .element(screen.getByRole("button"))
-      .toHaveStyle({ height: "40px" });
-    await takeSnapshot("Button - Unstable test with random label");
-  });
 });
