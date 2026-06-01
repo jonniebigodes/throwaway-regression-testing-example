@@ -1,4 +1,4 @@
-name: "Chromatic with Action"
+name: "Chromatic with CLI"
 
 on: push
 
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: test-results-action
+          name: test-results-cli
           path: .vitest/chromatic
           retention-days: 1
   chromatic:
@@ -42,11 +42,8 @@ jobs:
       - name: Download Vitest test results
         uses: actions/download-artifact@v8
         with:
-          name: test-results-action
+          name: test-results-cli
           path: .vitest/chromatic
-      - name: Run Chromatic tests
-        uses: chromaui/action@latest
-        with:
-          vitest: true
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          exitZeroOnChanges: true
+      - name: Run Chromatic
+        ## Moves to CLI command for testing
+        run: npx chromatic --vitest --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-zero-on-changes
