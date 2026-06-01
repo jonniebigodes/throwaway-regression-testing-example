@@ -44,6 +44,13 @@ jobs:
         with:
           name: test-results-cli
           path: .vitest/chromatic
+      - name: Display Vitest test results CLI
+        run: |
+          echo "Vitest Test Results CLI:"
+          ls -la
+          ls -la .vitest*
+          cd .vitest
+          tree
       - name: Run Chromatic
         ## Moves to CLI command for testing
         run: npx chromatic --vitest --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-zero-on-changes
